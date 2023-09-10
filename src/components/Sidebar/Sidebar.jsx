@@ -6,9 +6,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+  };
   return (
     <>
       <button
@@ -42,7 +46,8 @@ const Sidebar = () => {
         <div className="overflow-y-auto py-5 px-3 h-full bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
           <ul className="space-y-2">
             <li>
-              <Link to={"/"}
+              <Link
+                to={"/"}
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
               >
                 <div className="flex-shrink-0 w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
@@ -63,7 +68,8 @@ const Sidebar = () => {
               </Link>
             </li>
             <li>
-              <Link to={"/notes"}
+              <Link
+                to={"/notes"}
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
               >
                 <div className="flex-shrink-0 w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
@@ -74,7 +80,7 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>
-        <div className="hidden absolute bottom-0 left-0 p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20 border-r border-gray-200 dark:border-gray-700">
+        <ul className="hidden absolute bottom-0 left-0 p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20 border-r border-gray-200 dark:border-gray-700">
           <li>
             <a
               href="#"
@@ -83,10 +89,12 @@ const Sidebar = () => {
               <div className="flex-shrink-0 w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                 <FontAwesomeIcon icon={faRightFromBracket} />
               </div>
-              <span className="ml-3">Logout</span>
+              <button onClick={handleLogout} className="ml-3">
+                Logout
+              </button>
             </a>
           </li>
-        </div>
+        </ul>
       </aside>
     </>
   );

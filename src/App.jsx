@@ -11,13 +11,20 @@ function App() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="ml-64 bg-gray-50 dark:bg-gray-900 h-screen dark:text-white">
-        <Sidebar />
+      <div
+        className={`bg-gray-50 dark:text-white dark:bg-gray-900 h-screen ${
+          isLoggedIn ? "ml-64" : ""
+        }`}
+      >
+        {isLoggedIn && <Sidebar />}
         <Routes>
-          <Route exact path="/" element={<Login />} />
+          <Route exact path="/" element={isLoggedIn ? <Home /> : <Login />} />
+          <Route
+            path="*"
+            element={isLoggedIn ? <h1>Not found</h1> : <Login />}
+          />
           {isLoggedIn ? (
             <>
-              <Route exact path="/" element={<Home />} />
               <Route path="/users" element={<Users />} />
               <Route path="/notes" element={<Notes />} />
               <Route path="/adduser" element={<AddUser />} />
@@ -25,7 +32,7 @@ function App() {
           ) : (
             navigate("/login")
           )}
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
         </Routes>
       </div>
     </>

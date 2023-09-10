@@ -1,15 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCrsCZe_X7nS9JduURjATCrzGWvZmtUD4E",
-  authDomain: "codedrops-335d2.firebaseapp.com",
-  projectId: "codedrops-335d2",
-  storageBucket: "codedrops-335d2.appspot.com",
-  messagingSenderId: "12480149097",
-  appId: "1:12480149097:web:bc261be9cc2daab93cd4f8",
-  measurementId: "G-WNVVMQJ8XP"
+  apiKey: "AIzaSyB0e9oW1yVdKX9GcAG1TF5N8xvLCJ2Q5mg",
+  authDomain: "thegymproject-c3063.firebaseapp.com",
+  projectId: "thegymproject-c3063",
+  storageBucket: "thegymproject-c3063.appspot.com",
+  messagingSenderId: "607003619391",
+  appId: "1:607003619391:web:72cb5abceb1ac12a19888a"
 };
 
-const firebase = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 const analytics = getAnalytics(app);
